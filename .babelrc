@@ -1,0 +1,12 @@
+{
+  "plugins": [
+    "transform-runtime",
+    "external-helpers"
+  ],
+  "presets": [
+    [ 
+      "env", { "target": { "node": 6 } }
+    ],
+    "stage-0"
+  ]
+}
