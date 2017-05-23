@@ -40,9 +40,9 @@ var _fs = require('fs');
 
 var _fs2 = _interopRequireDefault(_fs);
 
-var _archiver = require('archiver');
+var _tar = require('tar');
 
-var _archiver2 = _interopRequireDefault(_archiver);
+var _tar2 = _interopRequireDefault(_tar);
 
 var _util = require('./util');
 
@@ -245,34 +245,25 @@ var Pkg = function () {
           while (1) {
             switch (_context6.prev = _context6.next) {
               case 0:
-                return _context6.abrupt('return', new _promise2.default(function (resolve, reject) {
-                  var inputDir = dir;
-                  var outputFile = inputDir + '.zip';
-                  var output = _fs2.default.createWriteStream(outputFile);
-                  var archive = (0, _archiver2.default)('zip', {
-                    zlib: { level: 9 }
-                  });
+                _context6.next = 2;
+                return _tar2.default.c({
+                  gzip: true,
+                  file: dir + '.tgz'
+                }, [dir]);
 
-                  output.on('close', function () {
-                    if (removeWhenSuccess) {
-                      (0, _util.remove)(inputDir).then(resolve).catch(reject);
-                      return;
-                    }
-                    resolve();
-                  });
+              case 2:
+                if (!removeWhenSuccess) {
+                  _context6.next = 5;
+                  break;
+                }
 
-                  archive.on('error', function (err) {
-                    reject(err);
-                  });
+                _context6.next = 5;
+                return (0, _util.remove)(dir);
 
-                  archive.pipe(output);
+              case 5:
+                return _context6.abrupt('return');
 
-                  archive.directory(inputDir);
-
-                  archive.finalize();
-                }));
-
-              case 1:
+              case 6:
               case 'end':
                 return _context6.stop();
             }

@@ -1,6 +1,6 @@
 import path from 'path'
 import fs from 'fs'
-import archiver from 'archiver'
+import tar from 'tar'
 import { 
   fileExists, 
   spwan,
@@ -73,32 +73,19 @@ class Pkg {
   }
 
   static async archiveDir(dir, { removeWhenSuccess = false } = {}) {
-    return new Promise((resolve, reject) => {
-      const inputDir = dir
-      const outputFile = `${inputDir}.zip`
-      const output = fs.createWriteStream(outputFile)
-      const archive = archiver('zip', {
-        zlib: { level: 9 }
-      })
+    await tar.c(
+      {
+        gzip: true,
+        file: `${dir}.tgz`
+      },
+      [ dir ]
+    )
 
-      output.on('close', function () {
-        if(removeWhenSuccess) {
-          remove(inputDir).then(resolve).catch(reject)
-          return
-        }
-        resolve()
-      })
+    if(removeWhenSuccess) {
+      await remove(dir)
+    }
 
-      archive.on('error', function (err) {
-        reject(err)
-      })
-
-      archive.pipe(output)
-
-      archive.directory(inputDir)
-
-      archive.finalize()
-    })
+    return
   }
 
   static async runCommad(command, cwd) {
