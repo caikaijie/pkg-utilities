@@ -95,7 +95,7 @@ class Pkg {
     }
     const [ c, ...args ] = parts
     return new Promise((resolve, reject) => {
-      spwan(c, args, { cwd }, (err) => {
+      spwan(c, args, { cwd, shell: true }, (err) => {
         if(err) {
           reject(err)
         } else {

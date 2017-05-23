@@ -299,7 +299,7 @@ var Pkg = function () {
               case 3:
                 _parts = (0, _toArray3.default)(parts), c = _parts[0], args = _parts.slice(1);
                 return _context7.abrupt('return', new _promise2.default(function (resolve, reject) {
-                  (0, _util.spwan)(c, args, { cwd: cwd }, function (err) {
+                  (0, _util.spwan)(c, args, { cwd: cwd, shell: true }, function (err) {
                     if (err) {
                       reject(err);
                     } else {
