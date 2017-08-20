@@ -44,7 +44,7 @@ var fileExists = exports.fileExists = function () {
   };
 }();
 
-exports.spwan = spwan;
+exports.spawn = spawn;
 exports.packageNpmRun = packageNpmRun;
 
 var _child_process = require('child_process');
@@ -71,7 +71,7 @@ var readJson = exports.readJson = (0, _es6Promisify2.default)(_fsExtra2.default.
 var remove = exports.remove = (0, _es6Promisify2.default)(_fsExtra2.default.remove);
 var move = exports.move = (0, _es6Promisify2.default)(_fsExtra2.default.move);
 
-function spwan(command, args, options) {
+function spawn(command, args, options) {
   var cb = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : function () {};
 
   var childProcess = (0, _child_process.spawn)(command, args, (0, _extends3.default)({

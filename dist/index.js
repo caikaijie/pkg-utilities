@@ -3,14 +3,14 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.spwan = exports.Pkg = undefined;
+exports.spawn = exports.Pkg = undefined;
 
 var _util = require('./util');
 
-Object.defineProperty(exports, 'spwan', {
+Object.defineProperty(exports, 'spawn', {
   enumerable: true,
   get: function get() {
-    return _util.spwan;
+    return _util.spawn;
   }
 });
 
