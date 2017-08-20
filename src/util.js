@@ -16,7 +16,7 @@ export async function fileExists(path) {
   return stats.isFile()
 }
 
-export function spwan(command, args, options, cb = () => {}) {
+export function spawn(command, args, options, cb = () => {}) {
   const childProcess = rawSpawn(
     command,
     args,

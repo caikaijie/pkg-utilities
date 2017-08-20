@@ -1,2 +1,2 @@
 export Pkg from './pkg'
-export { spwan } from './util'
+export { spawn } from './util'
